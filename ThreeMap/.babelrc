@@ -1,0 +1,29 @@
+{
+    //babel 中 optionss 可移至此文件，减少配置文件体积
+    //polyfill是注⼊到全局变量，window下的，会污染全局环境
+    // "presets": [
+    //     [
+    //         "@babel/preset-env",
+    //         {
+    //             "useBuiltIns": "usage", //按需注⼊
+    //             //"corejs": 2
+    //         }
+    //     ],
+    //     //"@babel/preset-react"
+    // ]
+    "plugins": [
+        [
+            //plugin-transform-runtime 
+            //防止污染全局作用域。（启用corejs配置）
+            //提高代码重用性，缩小编译后的代码体积
+            "@babel/plugin-transform-runtime",
+            {
+                "absoluteRuntime": false,
+                "corejs": 2,
+                "helpers": true,
+                "regenerator": true,
+                "useESModules": false
+            }
+        ]
+    ]
+}
