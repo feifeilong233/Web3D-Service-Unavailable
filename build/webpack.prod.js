@@ -3,7 +3,7 @@ const merge = require("webpack-merge");
 
 const prodConfig = {
     mode: "production",
-    devtool: "cheap-module-eval-source-map",
+    devtool: "cheap-module-source-map",
 }
 
 module.exports = merge(commonConfig, prodConfig)

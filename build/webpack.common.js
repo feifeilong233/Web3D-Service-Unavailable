@@ -11,7 +11,6 @@ module.exports = {
         path: path.resolve(__dirname, '../dist'),
         filename: 'index.js'
     },
-    devtool: "cheap-module-eval-source-map",
     module: {
         rules: [{
                 test: /\.(png|jpe?g|gif)$/,
