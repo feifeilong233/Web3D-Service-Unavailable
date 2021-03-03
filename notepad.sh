@@ -1,4 +1,4 @@
-//提示发生errno 126权限问题时，清除缓存并重装webpack环境
+//清除缓存并重装webpack环境
 rm -rf node_modules
 rm package-lock.json
 npm cache clear --force
