@@ -1,0 +1,3 @@
+（1）开发工具: Web 3D 技术，如Three.js, D3.js, 服务端采用JDK1.8, java 开发IDE采用idea, 数据库采用MySQL开源, WebServer 采用Apache Tomcat, HTTP 反向代理nginx, 其他的借助开源代码, 项目开发框架采用node.js+webpack+vue.js。
+（2）部署环境: CentOS
+（3）数据接口： 企业提供信虚拟大学以及学院的部分信息。如信创大学等。
