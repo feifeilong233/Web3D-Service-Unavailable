@@ -20,6 +20,6 @@ npm install webpack-merge -D
 
 //生成 package.json指令： npm init -y  生成 package.json
 //源代码与打包后的代码的映射关系:source-Map
-//cheap-module-eval-source-map 开发环境配置推荐*
+//cheap-module-eval-source-map 开发环境配置推荐
 //cheap-module-source-map 线上环境配置推荐
 //source-map 方便寻找错误，可以快速定位到错误发生位置
