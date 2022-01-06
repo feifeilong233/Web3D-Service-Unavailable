@@ -41,4 +41,10 @@ $.get('/map/china.json', data => {
     const map = new ThreeMapLightBar(decrypt.decode(data));
     map.drawLightBar(lightBarData);
     //const map2 = new ThreeMap(data);
+
+    addEventListener('resize', function () {
+        map.camera.aspect = this.window.innerWidth / this.window.innerHeight;
+        map.camera.updateProjectionMatrix();
+        map.renderer.setSize(this.window.innerWidth, this.window.innerHeight);
+    });
 })

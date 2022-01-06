@@ -59,31 +59,31 @@ export default class ThreeMap {
     }
 
     setHelper() {
-            //红色x,绿色y,蓝色z
-            const axesHelper = new THREE.AxisHelper(5);
-            this.scene.add(axesHelper);
-        }
-        //绘制多边形
-        // drawPolygon() {
-        //         console.log(this.mapData);
-        //         this.vector3Json = [];
-        //         this.mapData.features.forEach(element => {
-        //             const areas = element.geometry.coordinates;
-        //             const areaData = { coordinates: [] };
-        //             areas.forEach(a => {
-        //                 a.forEach(point => {
-        //                     console.log(point);
-        //                     areaData.coordinates.push(this.lnglatToVector(point))
-        //                 })
-        //                 this.vector3Json.push(areaData);
-        //             })
-        //         });
-        //         //console.log('vector3json', this.vector3Json)
-        //         //绘制模块
-        //         const group = new THREE.Group();
-        //         this.vector3Json.forEach(v => {
-        //             const mesh = this.getAreaMesh(v.coordinates);
-        //             group.add(mesh);
+        //红色x,绿色y,蓝色z
+        const axesHelper = new THREE.AxisHelper(5);
+        this.scene.add(axesHelper);
+    }
+    //绘制多边形
+    // drawPolygon() {
+    //         console.log(this.mapData);
+    //         this.vector3Json = [];
+    //         this.mapData.features.forEach(element => {
+    //             const areas = element.geometry.coordinates;
+    //             const areaData = { coordinates: [] };
+    //             areas.forEach(a => {
+    //                 a.forEach(point => {
+    //                     console.log(point);
+    //                     areaData.coordinates.push(this.lnglatToVector(point))
+    //                 })
+    //                 this.vector3Json.push(areaData);
+    //             })
+    //         });
+    //         //console.log('vector3json', this.vector3Json)
+    //         //绘制模块
+    //         const group = new THREE.Group();
+    //         this.vector3Json.forEach(v => {
+    //             const mesh = this.getAreaMesh(v.coordinates);
+    //             group.add(mesh);
 
     //         })
     //         this.scene.add(group);
@@ -152,11 +152,18 @@ export default class ThreeMap {
             transparent: true,
             opacity: 0.8,
         });
-        const geometry = new THREE.Geometry();
+        const geometry = new THREE.BufferGeometry();
+
+        let positions = [];
         points.forEach(d => {
             const [x, y, z] = d;
-            geometry.vertices.push(new THREE.Vector3(x, y, z));
-        })
+            positions.push(...[x, y, z]);
+
+            // geometry.setAttribute('position', new THREE.Float32BufferAttribute([x, y, z], 3));
+            // geometry.vertices.push(new THREE.Vector3(x, y, z));
+        });
+
+        geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
 
         const line = new THREE.Line(geometry, material);
         return line;
@@ -172,7 +179,7 @@ export default class ThreeMap {
             //es6解构 ...data
             //var a = { name: '张三', age: 25 }  var b = {job: 'web前端',...a}
             // 相当于 var c = {job: 'web前端',name: '张三',age: 25}
-            const areaData = {...element.properties, coordinates: [] };
+            const areaData = { ...element.properties, coordinates: [] };
             //通过循环，区分坐标或数组
             areas.forEach((area, i) => {
                 //如果是数组
@@ -276,17 +283,17 @@ export default class ThreeMap {
 
         //const [x0, y0] = points[0];
         points.forEach((p, i) => {
-                //console.log(p);
-                const [x, y] = p;
-                if (i === 0) {
-                    shape.moveTo(x, y);
-                } else if (i === points.length - 1) {
-                    shape.quadraticCurveTo(x, y, x, y) //二次曲线
-                } else {
-                    shape.lineTo(x, y, x, y);
-                }
-            })
-            //几何体
+            //console.log(p);
+            const [x, y] = p;
+            if (i === 0) {
+                shape.moveTo(x, y);
+            } else if (i === points.length - 1) {
+                shape.quadraticCurveTo(x, y, x, y) //二次曲线
+            } else {
+                shape.lineTo(x, y, x, y);
+            }
+        })
+        //几何体
         const geometry = new THREE.ExtrudeGeometry(
             shape, { depth: 2, bevelEnabled: false } //启用斜角
         );

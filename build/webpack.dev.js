@@ -9,6 +9,7 @@ const devConfig = {
         open: true,
         port: 8089
     }
+    
 }
 
 module.exports = merge(commonConfig, devConfig)
