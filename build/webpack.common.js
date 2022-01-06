@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 //闭包⽅式安装指令2: npm install --save @babel/runtime
 
 module.exports = {
-    entry: "./index.js",
+    entry: "./src/index.js",
     output: {
         path: path.resolve(__dirname, '../dist'),
         filename: 'index.js'
@@ -30,7 +30,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './index.html',
+            template: './src/index.html',
             filename: 'index.html'
         }),
     ],
