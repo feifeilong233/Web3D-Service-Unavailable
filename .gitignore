@@ -1,2 +1,9 @@
-# dependencies  npm包文件
+# dependencies
 /node_modules
+npm-debug.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.sln
